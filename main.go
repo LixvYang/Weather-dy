@@ -41,16 +41,7 @@ type LiveWeather struct {
 
 
 func main() {
-	// help := flag.Bool("h", false, "Display Help")
 	
-	
-	// if *help {
-	// 	fmt.Println("Out a help")
-	// 	fmt.Println("")
-	// 	fmt.Println("Usage:...")
-	// 	flag.PrintDefaults()
-	// }
-	// flag.Parse()
 
 
 	url := api.Init()
