@@ -5,11 +5,10 @@ import (
 	"fmt"
 	// "flag"
 
-	"log"
 	"io/ioutil"
 	"net/http"
 
-	api "weather-dy/api"
+	"weather-dy/api"
 )
 
 
@@ -42,31 +41,33 @@ type LiveWeather struct {
 
 func main() {
 	
-
-
 	url := api.Init()
 
-	fmt.Println("1. Performing Http Get...")
+	// fmt.Println("1. Performing Http Get...")
     resp, err := http.Get(url)
     if err != nil {
-        log.Fatalln(err)
+        panic(err)
     }
 
     defer resp.Body.Close()
     bodyBytes, _ := ioutil.ReadAll(resp.Body)
 
     // Convert response body to string
-    bodyString := string(bodyBytes)
-    fmt.Println("API Response as String:\n" + bodyString)
+    // bodyString := string(bodyBytes)
+    // fmt.Println("API Response as String:\n" + bodyString)
 
 	var liveweather LiveWeather
 	// LiveWeather := string(body)
 	json.Unmarshal(bodyBytes, &liveweather)
 	
-	log.Printf("API Response as struct %+v\n", liveweather)
-	log.Printf("你的城市是:%s\n",liveweather.City)
+	// fmt.Printf("API Response as struct %+v\n", liveweather)
+	fmt.Printf("城市    :%s\n",liveweather.City)
+	fmt.Printf("实时温度:%s°C\n",liveweather.Tem)
+	fmt.Printf("空气质量:%s\n",liveweather.AirLevel)
+	fmt.Printf("小贴士  :%s\n",liveweather.AirTips)
+	fmt.Printf("天气    :%s\n",liveweather.Wea)
+	
+	
 
-	// if config.AirTips {
-	// 	fmt.Printf("小贴士：%s\n", liveweather.AirTips)
-	// }
+	
 }
