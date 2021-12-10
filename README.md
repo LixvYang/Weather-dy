@@ -1,4 +1,6 @@
 # 终端获取天气信息
+Easy！
+
 ```go
 go run main.go -city 上海
 ```
